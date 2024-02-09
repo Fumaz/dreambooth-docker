@@ -21,9 +21,6 @@ WORKDIR /app/diffusers/examples/dreambooth
 # Install the requirements
 RUN pip install -r requirements.txt
 
-# Configure accelerate
-RUN accelerate config default
-
 # Copy the script
 COPY script.sh .
 

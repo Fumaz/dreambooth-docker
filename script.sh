@@ -28,7 +28,7 @@ unzip dataset.zip -d $INSTANCE_DIR
 find $INSTANCE_DIR -type f ! -iname "*.jpg" -delete
 
 # Remove all empty directories
-find $INSTANCE_DIR -type d -empty -delete
+find $INSTANCE_DIR -type d -exec rm -rf {} \;
 
 # Train the model
 accelerate launch train_dreambooth.py \
