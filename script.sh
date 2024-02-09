@@ -1,3 +1,6 @@
+# Configure accelerate
+accelerate config default
+
 # Download the model
 wget "$MODEL_URL" --content-disposition -O model.safetensors
 
@@ -22,7 +25,7 @@ mkdir $INSTANCE_DIR
 unzip dataset.zip -d $INSTANCE_DIR
 
 # Remove all files that aren't images
-find $INSTANCE_DIR -type f ! -name "*.jpg" -delete
+find $INSTANCE_DIR -type f ! -iname "*.jpg" -delete
 
 # Remove all empty directories
 find $INSTANCE_DIR -type d -empty -delete
