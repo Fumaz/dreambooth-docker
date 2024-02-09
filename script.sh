@@ -24,12 +24,6 @@ mkdir $INSTANCE_DIR
 # Unzip the dataset
 unzip dataset.zip -d $INSTANCE_DIR
 
-# Remove all files that aren't images
-find $INSTANCE_DIR -type f ! -iname "*.jpg" -delete
-
-# Remove all empty directories
-find $INSTANCE_DIR -type d -exec rm -rf {} \;
-
 # Train the model
 accelerate launch train_dreambooth.py \
       --pretrained_model_name_or_path=$MODEL_NAME  \
