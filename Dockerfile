@@ -1,4 +1,4 @@
-FROM pytorch:latest
+FROM pytorch/pytorch:latest
 
 # Set the working directory
 WORKDIR /app
