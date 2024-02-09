@@ -27,5 +27,7 @@ RUN accelerate config default
 # Copy the script
 COPY script.sh .
 
+RUN apt install -y unzip
+
 # Run script.sh
 ENTRYPOINT ["bash", "script.sh"]
