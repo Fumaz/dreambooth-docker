@@ -26,5 +26,22 @@ accelerate launch train_dreambooth.py \
       --learning_rate=5e-6 \
       --lr_scheduler="constant" \
       --lr_warmup_steps=0 \
-      --max_train_steps=$TRAINING_STEPS \
-      --push_to_hub
+      --max_train_steps=$TRAINING_STEPS
+
+# Upload the model
+cd "$OUTPUT_DIR" || exit
+
+# If $PRIVATE is true, create a private repo
+if [ "$PRIVATE" = true ]; then
+  huggingface-cli repo create "$OUTPUT_MODEL" --type model --private
+else
+  huggingface-cli repo create "$OUTPUT_MODEL" --type model
+fi
+
+git lfs install
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin "https://huggingface.co/$HF_USERNAME/$OUTPUT_MODEL"
+git push -u origin main
